@@ -5,6 +5,7 @@ import axios from "axios";
 import Navigation from "../../Components/Navigation/Navigation";
 import Chart_component from "../../Components/Chart/Chart";
 import coin_bg from "../../Assets/coin.png";
+import LoadingSpinner from "../../Components/UI/LoadingSpinner/LoadingSpinner";
 const Landing_Page = (props) => {
   const [coins, get_coins] = useState(null);
 
@@ -15,22 +16,56 @@ const Landing_Page = (props) => {
     axios.get(url).then((crypto_coins) => get_coins(crypto_coins.data));
   }, []);
 
-  let coins_container = null;
-  if (coins)
-    coins_container = coins.map((coin) => (
-      <Coin_item
-        key={coin.id}
-        coin_id={coin.id}
-        rank={coin.market_cap_rank}
-        coin_icon={coin.image}
-        name={coin.name}
-        current_price={coin.current_price}
-        market_cap={coin.market_cap}
-        price_change_percentage_24h={coin.price_change_percentage_24h}
-        total_volume={coin.total_volume}
-      />
-    ));
-  console.log(coins);
+  let dashboard = (
+    <div className={classes.loading_wrapper}>
+      <LoadingSpinner />
+    </div>
+  );
+
+  if (false && coins)
+    dashboard = (
+      <div className={classes.dashboard_wrapper}>
+        <div className={classes.dashboard_innerWrapper}>
+          <table className={classes.dashboard_header}>
+            <tr>
+              <td>
+                <p>#</p>
+              </td>
+              <td>
+                <p className={classes.header_item}>Coin</p>
+              </td>
+              <td>
+                <p>Price</p>
+              </td>
+              <td>
+                <p>24h</p>
+              </td>
+              <td className={classes.show_chart}>
+                <p>Chart</p>
+              </td>
+              <td>
+                <p>Mkt cap</p>
+              </td>
+            </tr>
+          </table>
+
+          {coins.map((coin) => (
+            <Coin_item
+              key={coin.id}
+              coin_id={coin.id}
+              rank={coin.market_cap_rank}
+              coin_icon={coin.image}
+              name={coin.name}
+              current_price={coin.current_price}
+              market_cap={coin.market_cap}
+              price_change_percentage_24h={coin.price_change_percentage_24h}
+              total_volume={coin.total_volume}
+            />
+          ))}
+        </div>
+      </div>
+    );
+
   return (
     <>
       <Navigation />
@@ -45,34 +80,7 @@ const Landing_Page = (props) => {
             <img src={coin_bg} />
           </div>
         </div>
-        <div className={classes.dashboard_wrapper}>
-          <div className={classes.dashboard_innerWrapper}>
-            <table className={classes.dashboard_header}>
-              <tr>
-                <td>
-                  <p>#</p>
-                </td>
-                <td>
-                  <p className={classes.header_item}>Coin</p>
-                </td>
-                <td>
-                  <p>Price</p>
-                </td>
-                <td>
-                  <p>24h</p>
-                </td>
-                <td className={classes.show_chart}>
-                  <p>Chart</p>
-                </td>
-                <td>
-                  <p>Mkt cap</p>
-                </td>
-              </tr>
-            </table>
-
-            {coins_container}
-          </div>
-        </div>
+        {dashboard}
       </div>
     </>
   );
