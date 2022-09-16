@@ -24,10 +24,22 @@
 }
 .bg_wrapper {
   position: absolute;
+  display: block;
   top: 0;
   right: 20px;
   width: 300px;
 }
 .bg_wrapper img {
   width: 100%;
+}
+@media screen and (max-width: 1024px) {
+  .bg_wrapper {
+    display: none;
+  }
+  .dashboard_wrapper {
+    padding: 0 20px;
+  }
+  .header_bar {
+    padding: 20px;
+  }
 }
