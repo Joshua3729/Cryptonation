@@ -41,3 +41,9 @@ p {
 .decrease {
   color: #ea3943;
 }
+
+@media screen and (max-width: 750px) {
+  .show_chart {
+    display: none;
+  }
+}

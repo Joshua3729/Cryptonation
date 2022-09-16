@@ -31,39 +31,41 @@ const Coin_item = (props) => {
     );
   return (
     <table className={classes.Coin_item}>
-      <tr>
-        <td>
-          <p className={classes.rank}>{props.rank}</p>
-        </td>
-        <td>
-          <div className={classes.coin_icon}>
-            <img src={props.coin_icon} alt="coin icon" />
-            {props.name}
-          </div>
-        </td>
-        <td>
-          <p className={classes.coin_price}>
-            R{props.current_price.toLocaleString()}
-          </p>
-        </td>
-        <td>
-          <p
-            className={
-              props.price_change_percentage_24h > 0
-                ? classes.increase
-                : classes.decrease
-            }
-          >
-            {props.price_change_percentage_24h.toFixed(2)}%
-          </p>
-        </td>
-        <td>
-          <div className={classes.chart_wrapper}>{coin_chart}</div>
-        </td>
-        <td>
-          <p>R{props.market_cap.toLocaleString()}</p>
-        </td>
-      </tr>
+      <tbody>
+        <tr>
+          <td>
+            <p className={classes.rank}>{props.rank}</p>
+          </td>
+          <td>
+            <div className={classes.coin_icon}>
+              <img src={props.coin_icon} alt="coin icon" />
+              {props.name}
+            </div>
+          </td>
+          <td>
+            <p className={classes.coin_price}>
+              R{props.current_price.toLocaleString()}
+            </p>
+          </td>
+          <td>
+            <p
+              className={
+                props.price_change_percentage_24h > 0
+                  ? classes.increase
+                  : classes.decrease
+              }
+            >
+              {props.price_change_percentage_24h.toFixed(2)}%
+            </p>
+          </td>
+          <td className={classes.show_chart}>
+            <div className={classes.chart_wrapper}>{coin_chart}</div>
+          </td>
+          <td>
+            <p>R{props.market_cap.toLocaleString()}</p>
+          </td>
+        </tr>
+      </tbody>
     </table>
   );
 };

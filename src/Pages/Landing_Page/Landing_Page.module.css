@@ -2,6 +2,10 @@
   display: block;
   margin: 0 auto;
   max-width: 1000px;
+  overflow-x: scroll;
+}
+.dashboard_innerWrapper {
+  min-width: 700px;
 }
 .primary_header {
   margin-bottom: 50px;
@@ -41,5 +45,10 @@
   }
   .header_bar {
     padding: 20px;
+  }
+}
+@media screen and (max-width: 750px) {
+  .show_chart {
+    display: none;
   }
 }
