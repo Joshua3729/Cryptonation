@@ -29,7 +29,7 @@ const Chart_component = (props) => {
       options={options}
       data={[["Time", "Price"], ...props.chart_data]}
       width="100%"
-      height="100px"
+      height={props.chart_height}
       legendToggle
     />
   );

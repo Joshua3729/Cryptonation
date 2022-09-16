@@ -27,6 +27,7 @@ const Coin_item = (props) => {
       <Chart_component
         chart_data={chart_data.prices}
         increasing={props.price_change_percentage_24h > 0}
+        chart_height={"100px"}
       />
     );
   return (

@@ -8,6 +8,7 @@ import coin_bg from "../../Assets/coin.png";
 import LoadingSpinner from "../../Components/UI/LoadingSpinner/LoadingSpinner";
 const Landing_Page = (props) => {
   const [coins, get_coins] = useState(null);
+  const [chart_data, get_chart_data] = useState(null);
 
   const url =
     "https://api.coingecko.com/api/v3/coins/markets?vs_currency=zar&order=market_cap_desc&per_page=10&page=1&sparkline=false";
@@ -22,7 +23,7 @@ const Landing_Page = (props) => {
     </div>
   );
 
-  if (false && coins)
+  if (coins)
     dashboard = (
       <div className={classes.dashboard_wrapper}>
         <div className={classes.dashboard_innerWrapper}>

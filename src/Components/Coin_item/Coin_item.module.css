@@ -26,6 +26,10 @@ td {
   width: 190px;
   text-align: center;
 }
+.Coin_item td {
+  height: 100px;
+}
+
 td:first-child {
   width: 50px;
 }
