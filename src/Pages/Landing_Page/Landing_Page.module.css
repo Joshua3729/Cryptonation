@@ -2,7 +2,7 @@
   display: block;
   margin: 0 auto;
   max-width: 1000px;
-  overflow-x: scroll;
+  overflow-x: auto;
 }
 .dashboard_innerWrapper {
   min-width: 700px;

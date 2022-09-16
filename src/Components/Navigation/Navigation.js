@@ -1,4 +1,5 @@
 import React from "react";
+import BurgerButton from "../UI/BurgerButton/BurgerButton";
 import classes from "./Navigation.module.css";
 
 const Navigation = () => {
@@ -10,6 +11,7 @@ const Navigation = () => {
         <li className={classes.nav_list_item}>About</li>
         <li className={classes.nav_list_item}>Sign in</li>
       </ul>
+      <BurgerButton />
     </div>
   );
 };

@@ -27,3 +27,8 @@
 .nav_list_item:last-child {
   margin-right: 0;
 }
+@media screen and (max-width: 750px) {
+  .nav_list {
+    display: none;
+  }
+}
