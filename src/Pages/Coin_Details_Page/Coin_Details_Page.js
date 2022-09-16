@@ -2,15 +2,36 @@ import React, { useEffect, useState } from "react";
 import classes from "./Coin_Details.module.css";
 import Navigation from "../../Components/Navigation/Navigation";
 import axios from "axios";
+import Chart_component from "../../Components/Chart/Chart";
+import { useParams } from "react-router-dom";
 
 const Coin_Details = () => {
   const [coin_details, get_coin_details] = useState(null);
+  const [chart_data, get_chart_data] = useState(null);
+
+  const coin_id = useParams().coin_id;
 
   const url =
     "https://api.coingecko.com/api/v3/coins/bitcoin?localization=false&tickers=true&market_data=true&community_data=true&developer_data=true&sparkline=false";
 
   useEffect(() => {
-    axios.get(url).then((crypto_coin) => get_coin_details(crypto_coin.data));
+    const currDate = new Date();
+    const prevDate = new Date(new Date().getTime() - 24 * 60 * 60 * 1000);
+
+    const currTimeStamp = Math.floor(currDate.getTime() / 1000);
+    const prevTimeStamp = Math.floor(prevDate.getTime() / 1000);
+
+    axios
+      .get(url)
+      .then((crypto_coin) => get_coin_details(crypto_coin.data))
+      .catch((error) => console.log(error));
+
+    axios
+      .get(
+        `https://api.coingecko.com/api/v3/coins/${coin_id}/market_chart/range?vs_currency=zar&from=${prevTimeStamp}&to=${currTimeStamp}`
+      )
+      .then((charts_data) => get_chart_data(charts_data.data))
+      .catch((error) => console.log(error));
   }, []);
 
   console.log(coin_details);
@@ -48,6 +69,13 @@ const Coin_Details = () => {
               </div>
             </div>
           </div>
+          <Chart_component
+            chart_data={chart_data?.prices || []}
+            increasing={
+              coin_details?.market_data.price_change_percentage_24h > 0
+            }
+            chart_height={"400px"}
+          />
         </div>
       </div>
     </>
