@@ -1,0 +1,43 @@
+.Coin_item {
+  border-bottom: 2px solid #f1f3f2;
+  cursor: pointer;
+}
+.Coin_item:hover {
+  background-color: #f1f3f2;
+}
+.coin_icon img {
+  width: auto;
+  height: 30px;
+  margin-right: 8px;
+}
+.Coin_item p {
+  font-weight: 500;
+}
+.coin_icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+}
+.coin_price {
+  font-weight: 500;
+}
+td {
+  width: 190px;
+  text-align: center;
+}
+td:first-child {
+  width: 50px;
+}
+p {
+  text-align: center;
+}
+.rank {
+  color: grey;
+}
+.increase {
+  color: #16c784;
+}
+.decrease {
+  color: #ea3943;
+}

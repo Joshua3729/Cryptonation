@@ -1,0 +1,33 @@
+.dashboard_wrapper {
+  display: block;
+  margin: 0 auto;
+  max-width: 1000px;
+}
+.primary_header {
+  margin-bottom: 50px;
+}
+.header_bar {
+  position: relative;
+  background-color: #0d1527;
+  color: white;
+  padding: 20px 0;
+  margin-bottom: 50px;
+}
+.header_bar .inner_wrapper {
+  display: block;
+  margin: 0 auto;
+  max-width: 1000px;
+}
+.dashboard_header {
+  color: #4a4a4a;
+  font-weight: 700;
+}
+.bg_wrapper {
+  position: absolute;
+  top: 0;
+  right: 20px;
+  width: 300px;
+}
+.bg_wrapper img {
+  width: 100%;
+}
