@@ -44,9 +44,6 @@
   justify-content: center;
 }
 @media screen and (max-width: 1024px) {
-  .bg_wrapper {
-    display: none;
-  }
   .dashboard_wrapper {
     padding: 0 20px;
   }
@@ -54,8 +51,16 @@
     padding: 20px;
   }
 }
-@media screen and (max-width: 750px) {
-  .show_chart {
+
+@media screen and (max-width: 500px) {
+  .primary_header {
+    text-align: center;
+    font-size: 30px;
+    line-height: 1.5;
+  }
+}
+@media screen and (max-width: 1350px) {
+  .bg_wrapper {
     display: none;
   }
 }

@@ -4,6 +4,7 @@ import Navigation from "../../Components/Navigation/Navigation";
 import axios from "axios";
 import Chart_component from "../../Components/Chart/Chart";
 import { useParams } from "react-router-dom";
+import LoadingSpinner from "../../Components/UI/LoadingSpinner/LoadingSpinner";
 
 const Coin_Details = () => {
   const [coin_details, get_coin_details] = useState(null);
@@ -41,7 +42,12 @@ const Coin_Details = () => {
   let formatter = Intl.NumberFormat("en", { notation: "compact" });
   console.log(coin_details);
 
-  let coinDetails = <p>Loading...</p>;
+  let coinDetails = (
+    <div className={classes.loading_wrapper}>
+      <LoadingSpinner />
+    </div>
+  );
+
   if (chart_data && coin_details) {
     switch (active_tab) {
       case "price":
@@ -81,8 +87,7 @@ const Coin_Details = () => {
                 +ZAR(
                 <span
                   className={
-                    coin_details.market_data.market_cap_change_percentage_24h >
-                    0
+                    coin_details.market_data.price_change_percentage_24h > 0
                       ? classes.increase
                       : classes.decrease
                   }
@@ -127,7 +132,7 @@ const Coin_Details = () => {
                   }
                   onClick={() => set_active_tab_handler("total_volumes")}
                 >
-                  total_Volume
+                  Total volume
                 </button>
               </div>
             </div>
