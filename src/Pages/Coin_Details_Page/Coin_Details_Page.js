@@ -17,7 +17,7 @@ const Coin_Details = () => {
 
     const currTimeStamp = Math.floor(currDate.getTime() / 1000);
     const prevTimeStamp = Math.floor(prevDate.getTime() / 1000);
-
+    console.log(coin_id);
     axios
       .get(
         `https://api.coingecko.com/api/v3/coins/${coin_id}?localization=false&tickers=true&market_data=true&community_data=true&developer_data=true&sparkline=false`
@@ -146,13 +146,70 @@ const Coin_Details = () => {
                 <p className={classes.header}>All time high</p>
                 <p className={classes.stat}>R300</p>
               </div>
-              <div className={classes.market_stat_item}></div>
-              <div className={classes.market_stat_item}></div>
-              <div className={classes.market_stat_item}></div>
-              <div className={classes.market_stat_item}></div>
-              <div className={classes.market_stat_item}></div>
-              <div className={classes.market_stat_item}></div>
-              <div className={classes.market_stat_item}></div>
+              <div className={classes.market_stat_item}>
+                <p className={classes.header}>Price Change(1h)</p>
+                <p
+                  className={
+                    coin_details.market_data
+                      .price_change_percentage_1h_in_currency.zar > 0
+                      ? classes.stat_increasing
+                      : classes.stat_decreasing
+                  }
+                >
+                  {coin_details.market_data.price_change_percentage_1h_in_currency.zar.toFixed(
+                    2
+                  )}
+                  %
+                </p>
+              </div>
+              <div className={classes.market_stat_item}>
+                <p className={classes.header}>Price Change(24h)</p>
+                <p
+                  className={
+                    coin_details.market_data
+                      .price_change_percentage_24h_in_currency.zar > 0
+                      ? classes.stat_increasing
+                      : classes.stat_decreasing
+                  }
+                >
+                  {coin_details.market_data.price_change_percentage_24h_in_currency.zar.toFixed(
+                    2
+                  )}
+                  %
+                </p>
+              </div>
+              <div className={classes.market_stat_item}>
+                <p className={classes.header}>Price Change(30d)</p>
+                <p
+                  className={
+                    coin_details.market_data
+                      .price_change_percentage_30d_in_currency.zar > 0
+                      ? classes.stat_increasing
+                      : classes.stat_decreasing
+                  }
+                >
+                  {coin_details.market_data.price_change_percentage_30d_in_currency.zar.toFixed(
+                    2
+                  )}
+                  %
+                </p>
+              </div>
+              <div className={classes.market_stat_item}>
+                <p className={classes.header}>Popularity</p>
+                <p className={classes.stat}>R300</p>
+              </div>
+              <div className={classes.market_stat_item}>
+                <p className={classes.header}>Market cap</p>
+                <p className={classes.stat}>R300</p>
+              </div>
+              <div className={classes.market_stat_item}>
+                <p className={classes.header}>Volume(24)</p>
+                <p className={classes.stat}>R300</p>
+              </div>
+              <div className={classes.market_stat_item}>
+                <p className={classes.header}>Cirtulating supply</p>
+                <p className={classes.stat}>R300</p>
+              </div>
             </div>
           </div>
           <div className={classes.about_wrapper}>

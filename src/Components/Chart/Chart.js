@@ -17,6 +17,7 @@ const Chart_component = (props) => {
         interval: 0,
       },
     },
+    chartArea: { width: "100%", height: "80%" },
     lineWidth: props.lineWidth,
     series: {
       0: { color: props.increasing ? "#16c784" : "#ea3943" },
