@@ -43,7 +43,11 @@ const Coin_item = (props) => {
               {props.price_change_percentage_24h.toFixed(2)}%
             </p>
           </td>
-          <td className={classes.show_chart}>
+
+          <td>
+            <p>R{props.market_cap.toLocaleString()}</p>
+          </td>
+          <td>
             <p
               className={
                 props.market_cap_change_percentage_24h > 0
@@ -53,9 +57,6 @@ const Coin_item = (props) => {
             >
               {props.market_cap_change_percentage_24h.toFixed(2)}%
             </p>
-          </td>
-          <td>
-            <p>R{props.market_cap.toLocaleString()}</p>
           </td>
         </tr>
       </tbody>

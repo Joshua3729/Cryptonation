@@ -38,7 +38,8 @@ const Coin_Details = () => {
   };
   let chartData = null;
   let increasing = null;
-  console.log(chart_data);
+  let formatter = Intl.NumberFormat("en", { notation: "compact" });
+  console.log(coin_details);
 
   let coinDetails = <p>Loading...</p>;
   if (chart_data && coin_details) {
@@ -195,20 +196,29 @@ const Coin_Details = () => {
                 </p>
               </div>
               <div className={classes.market_stat_item}>
-                <p className={classes.header}>Popularity</p>
-                <p className={classes.stat}>R300</p>
+                <p className={classes.header}>Popularity score</p>
+                <p className={classes.stat}>
+                  {coin_details.public_interest_score}
+                </p>
               </div>
               <div className={classes.market_stat_item}>
                 <p className={classes.header}>Market cap</p>
-                <p className={classes.stat}>R300</p>
+                <p className={classes.stat}>
+                  R {formatter.format(coin_details.market_data.market_cap.zar)}
+                </p>
               </div>
               <div className={classes.market_stat_item}>
-                <p className={classes.header}>Volume(24)</p>
-                <p className={classes.stat}>R300</p>
+                <p className={classes.header}>Total volume</p>
+                <p className={classes.stat}>
+                  R{" "}
+                  {formatter.format(coin_details.market_data.total_volume.zar)}
+                </p>
               </div>
               <div className={classes.market_stat_item}>
                 <p className={classes.header}>Cirtulating supply</p>
-                <p className={classes.stat}>R300</p>
+                <p className={classes.stat}>
+                  {coin_details.market_data.circulating_supply}
+                </p>
               </div>
             </div>
           </div>

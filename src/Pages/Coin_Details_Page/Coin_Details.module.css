@@ -79,6 +79,13 @@
   line-height: 1.5;
   color: rgb(38, 38, 38);
 }
+.about_text a {
+  text-decoration: none;
+  font-weight: 700;
+}
+.about_text a:hover {
+  text-decoration: underline;
+}
 .market_stats_innerWrapper {
   width: 100%;
   display: grid;

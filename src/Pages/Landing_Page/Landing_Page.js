@@ -28,26 +28,29 @@ const Landing_Page = (props) => {
       <div className={classes.dashboard_wrapper}>
         <div className={classes.dashboard_innerWrapper}>
           <table className={classes.dashboard_header}>
-            <tr>
-              <td>
-                <p>#</p>
-              </td>
-              <td>
-                <p className={classes.header_item}>Coin</p>
-              </td>
-              <td>
-                <p>Price</p>
-              </td>
-              <td>
-                <p>24h</p>
-              </td>
-              <td className={classes.show_chart}>
-                <p>Chart</p>
-              </td>
-              <td>
-                <p>Mkt cap</p>
-              </td>
-            </tr>
+            <tbody>
+              <tr>
+                <td>
+                  <p>#</p>
+                </td>
+                <td>
+                  <p className={classes.header_item}>Coin</p>
+                </td>
+                <td>
+                  <p>Price</p>
+                </td>
+                <td>
+                  <p>24h</p>
+                </td>
+
+                <td>
+                  <p>Mkt cap</p>
+                </td>
+                <td>
+                  <p>24h</p>
+                </td>
+              </tr>
+            </tbody>
           </table>
 
           {coins.map((coin) => (
