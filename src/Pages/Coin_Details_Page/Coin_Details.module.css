@@ -43,3 +43,29 @@
   padding-top: 50px;
   padding-bottom: 10px;
 }
+.toggle_btns_innerWrapper {
+  padding: 5px;
+  display: block;
+}
+.btn {
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  margin-right: 10px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.btn:active {
+  background-color: #0d1527;
+  color: white;
+}
+.btn:last-child {
+  margin-right: 0;
+}
+.toggle_btns_wrapper {
+  margin-top: 10px;
+}
+.active {
+  background-color: #0d1527;
+  color: white;
+}
