@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import classes from "./Coin_item.module.css";
 import axios from "axios";
 import Chart_component from "../Chart/Chart";
+import { useNavigate } from "react-router-dom";
 
 const Coin_item = (props) => {
   const [chart_data, get_chart_data] = useState(null);
@@ -21,6 +22,12 @@ const Coin_item = (props) => {
       .catch((error) => console.log(error));
   }, []);
 
+  let navigate = useNavigate();
+  const viewCoinDetails = (coin_id) => {
+    let path = `/coin/${coin_id}`;
+    navigate(path);
+  };
+
   let coin_chart = null;
   if (chart_data)
     coin_chart = (
@@ -28,10 +35,14 @@ const Coin_item = (props) => {
         chart_data={chart_data.prices}
         increasing={props.price_change_percentage_24h > 0}
         chart_height={"100px"}
+        lineWidth={1}
       />
     );
   return (
-    <table className={classes.Coin_item}>
+    <table
+      className={classes.Coin_item}
+      onClick={() => viewCoinDetails(props.coin_id)}
+    >
       <tbody>
         <tr>
           <td>

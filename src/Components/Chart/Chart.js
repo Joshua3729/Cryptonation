@@ -17,7 +17,7 @@ const Chart_component = (props) => {
         interval: 0,
       },
     },
-    lineWidth: 1.5,
+    lineWidth: props.lineWidth,
     series: {
       0: { color: props.increasing ? "#16c784" : "#ea3943" },
     },

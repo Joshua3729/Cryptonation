@@ -133,6 +133,7 @@ const Coin_Details = () => {
           <Chart_component
             chart_data={chartData || []}
             increasing={increasing}
+            lineWidth={1.5}
             chart_height={"400px"}
           />
         </div>
