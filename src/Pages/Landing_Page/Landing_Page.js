@@ -61,6 +61,9 @@ const Landing_Page = (props) => {
               market_cap={coin.market_cap}
               price_change_percentage_24h={coin.price_change_percentage_24h}
               total_volume={coin.total_volume}
+              market_cap_change_percentage_24h={
+                coin.market_cap_change_percentage_24h
+              }
             />
           ))}
         </div>

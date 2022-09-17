@@ -5,39 +5,12 @@ import Chart_component from "../Chart/Chart";
 import { useNavigate } from "react-router-dom";
 
 const Coin_item = (props) => {
-  const [chart_data, get_chart_data] = useState(null);
-
-  useEffect(() => {
-    const currDate = new Date();
-    const prevDate = new Date(new Date().getTime() - 24 * 60 * 60 * 1000);
-
-    const currTimeStamp = Math.floor(currDate.getTime() / 1000);
-    const prevTimeStamp = Math.floor(prevDate.getTime() / 1000);
-
-    axios
-      .get(
-        `https://api.coingecko.com/api/v3/coins/${props.coin_id}/market_chart/range?vs_currency=zar&from=${prevTimeStamp}&to=${currTimeStamp}`
-      )
-      .then((charts_data) => get_chart_data(charts_data.data))
-      .catch((error) => console.log(error));
-  }, []);
-
   let navigate = useNavigate();
   const viewCoinDetails = (coin_id) => {
     let path = `/coin/${coin_id}`;
     navigate(path);
   };
 
-  let coin_chart = null;
-  if (chart_data)
-    coin_chart = (
-      <Chart_component
-        chart_data={chart_data.prices}
-        increasing={props.price_change_percentage_24h > 0}
-        chart_height={"100px"}
-        lineWidth={1}
-      />
-    );
   return (
     <table
       className={classes.Coin_item}
@@ -71,7 +44,15 @@ const Coin_item = (props) => {
             </p>
           </td>
           <td className={classes.show_chart}>
-            <div className={classes.chart_wrapper}>{coin_chart}</div>
+            <p
+              className={
+                props.market_cap_change_percentage_24h > 0
+                  ? classes.increase
+                  : classes.decrease
+              }
+            >
+              {props.market_cap_change_percentage_24h.toFixed(2)}%
+            </p>
           </td>
           <td>
             <p>R{props.market_cap.toLocaleString()}</p>

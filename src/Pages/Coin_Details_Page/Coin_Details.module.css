@@ -41,8 +41,7 @@
   max-width: 1000px;
   display: block;
   margin: 0 auto;
-  padding-top: 50px;
-  padding-bottom: 10px;
+  padding: 50px 50px 10px 50px;
 }
 .toggle_btns_innerWrapper {
   padding: 5px;
