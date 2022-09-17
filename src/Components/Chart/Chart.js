@@ -6,16 +6,9 @@ const Chart_component = (props) => {
     legend: "none",
     vAxis: {
       textPosition: "none",
-      gridlines: {
-        interval: 0,
-      },
-      baselineColor: "#fff",
     },
     hAxis: {
       textPosition: "none",
-      gridlines: {
-        interval: 0,
-      },
     },
     chartArea: { width: "100%", height: "80%" },
     lineWidth: props.lineWidth,

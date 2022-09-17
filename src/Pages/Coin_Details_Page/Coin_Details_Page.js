@@ -144,8 +144,10 @@ const Coin_Details = () => {
             </h2>
             <div className={classes.market_stats_innerWrapper}>
               <div className={classes.market_stat_item}>
-                <p className={classes.header}>All time high</p>
-                <p className={classes.stat}>R300</p>
+                <p className={classes.header}>Price high(24)</p>
+                <p className={classes.stat}>
+                  R {formatter.format(coin_details.market_data.high_24h.zar)}
+                </p>
               </div>
               <div className={classes.market_stat_item}>
                 <p className={classes.header}>Price Change(1h)</p>

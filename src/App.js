@@ -15,6 +15,7 @@ function App() {
     <Routes>
       <Route path="/" exact element={<Landing_Page />} />
       <Route path="/coin/:coin_id" exact element={<Coin_Details />} />
+      <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   );
 }
