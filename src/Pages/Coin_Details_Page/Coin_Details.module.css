@@ -20,6 +20,7 @@
 }
 .coin_symbol {
   font-size: 10px;
+  text-transform: uppercase;
   padding: 5px;
   width: 50px;
   text-align: center;
@@ -68,4 +69,25 @@
 .active {
   background-color: #0d1527;
   color: white;
+}
+.secondary_header {
+  font-size: 20px;
+}
+.about_text {
+  line-height: 1.5;
+}
+.market_stats_innerWrapper {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 10px;
+}
+.market_stat_item p {
+  text-align: left;
+}
+.market_stat_item .header {
+  color: #6c6c6c;
+}
+.market_stat_item .stat {
+  font-weight: 900;
 }
