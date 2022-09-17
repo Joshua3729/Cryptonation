@@ -5,26 +5,31 @@ import axios from "axios";
 import Chart_component from "../../Components/Chart/Chart";
 import { useParams } from "react-router-dom";
 import LoadingSpinner from "../../Components/UI/LoadingSpinner/LoadingSpinner";
+import Modal from "../../Components/Modal/Modal";
 
 const Coin_Details = () => {
   const [coin_details, get_coin_details] = useState(null);
   const [chart_data, get_chart_data] = useState(null);
   const [active_tab, set_active_tab] = useState("price");
+  const [show_modal, set_show_modal] = useState(false);
+  const [error_message, set_error_message] = useState(null);
   const coin_id = useParams().coin_id;
 
   useEffect(() => {
     const currDate = new Date();
     const prevDate = new Date(new Date().getTime() - 24 * 60 * 60 * 1000);
-
     const currTimeStamp = Math.floor(currDate.getTime() / 1000);
     const prevTimeStamp = Math.floor(prevDate.getTime() / 1000);
     console.log(coin_id);
     axios
       .get(
-        `https://api.coingecko.com/api/v3/coins/${coin_id}?localization=false&tickers=true&market_data=true&community_data=true&developer_data=true&sparkline=false`
+        `https://api.coingecko.com/api/v3/cois/${coin_id}?localization=false&tickers=true&market_data=true&community_data=true&developer_data=true&sparkline=false`
       )
       .then((crypto_coin) => get_coin_details(crypto_coin.data))
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        set_show_modal(true);
+        set_error_message(error.message);
+      });
 
     axios
       .get(
@@ -37,6 +42,11 @@ const Coin_Details = () => {
   const set_active_tab_handler = (tab) => {
     set_active_tab(tab);
   };
+
+  const close_modal_handler = () => {
+    set_show_modal(false);
+  };
+
   let chartData = null;
   let increasing = null;
   let formatter = Intl.NumberFormat("en", { notation: "compact" });
@@ -246,6 +256,9 @@ const Coin_Details = () => {
   return (
     <>
       <Navigation />
+      <Modal show={show_modal} clicked={close_modal_handler}>
+        <div className={classes.modal_inner_wrapper}>{error_message}</div>
+      </Modal>
       {coinDetails}
     </>
   );
