@@ -23,7 +23,7 @@ const Coin_Details = () => {
     console.log(coin_id);
     axios
       .get(
-        `https://api.coingecko.com/api/v3/cois/${coin_id}?localization=false&tickers=true&market_data=true&community_data=true&developer_data=true&sparkline=false`
+        `https://api.coingecko.com/api/v3/coins/${coin_id}?localization=false&tickers=true&market_data=true&community_data=true&developer_data=true&sparkline=false`
       )
       .then((crypto_coin) => get_coin_details(crypto_coin.data))
       .catch((error) => {
