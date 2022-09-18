@@ -237,14 +237,13 @@ const Coin_Details = () => {
               <div className={classes.market_stat_item}>
                 <p className={classes.header}>Market cap</p>
                 <p className={classes.stat}>
-                  R {formatter.format(coin_details.market_data.market_cap.zar)}
+                  R{formatter.format(coin_details.market_data.market_cap.zar)}
                 </p>
               </div>
               <div className={classes.market_stat_item}>
                 <p className={classes.header}>Total volume</p>
                 <p className={classes.stat}>
-                  R
-                  {formatter.format(coin_details.market_data.total_volume.zar)}
+                  R{formatter.format(coin_details.market_data.total_volume.zar)}
                 </p>
               </div>
               <div className={classes.market_stat_item}>
