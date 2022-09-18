@@ -28,7 +28,7 @@ const Coin_Details = () => {
         `https://api.coingecko.com/api/v3/coins/${coin_id}?localization=false&tickers=true&market_data=true&community_data=true&developer_data=true&sparkline=false`
       )
       .then((crypto_coin) => {
-        get_coin_details(crypto_coin.data);
+        if (isAPISubscribed) get_coin_details(crypto_coin.data);
       })
       .catch((error) => {
         set_show_modal(true);
@@ -177,7 +177,7 @@ const Coin_Details = () => {
               <div className={classes.market_stat_item}>
                 <p className={classes.header}>Price high(24)</p>
                 <p className={classes.stat}>
-                  R {formatter.format(coin_details.market_data.high_24h.zar)}
+                  R{formatter.format(coin_details.market_data.high_24h.zar)}
                 </p>
               </div>
               <div className={classes.market_stat_item}>
@@ -243,7 +243,7 @@ const Coin_Details = () => {
               <div className={classes.market_stat_item}>
                 <p className={classes.header}>Total volume</p>
                 <p className={classes.stat}>
-                  R{" "}
+                  R
                   {formatter.format(coin_details.market_data.total_volume.zar)}
                 </p>
               </div>
