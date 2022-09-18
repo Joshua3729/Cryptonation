@@ -36,7 +36,10 @@ const Coin_Details = () => {
         `https://api.coingecko.com/api/v3/coins/${coin_id}/market_chart/range?vs_currency=zar&from=${prevTimeStamp}&to=${currTimeStamp}`
       )
       .then((charts_data) => get_chart_data(charts_data.data))
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        set_show_modal(true);
+        set_error_message(error.message);
+      });
   }, []);
 
   const set_active_tab_handler = (tab) => {

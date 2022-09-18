@@ -5,7 +5,7 @@ import classes from "./Navigation.module.css";
 const Navigation = () => {
   return (
     <div className={classes.Navigation}>
-      <div className={classes.logo}>CRYPTONATION</div>
+      <div className={classes.logo}>CRYPTO-JOINT</div>
       <ul className={classes.nav_list}>
         <li className={classes.nav_list_item}>Support</li>
         <li className={classes.nav_list_item}>About</li>
