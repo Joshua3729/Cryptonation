@@ -20,12 +20,16 @@ const Coin_Details = () => {
     const prevDate = new Date(new Date().getTime() - 24 * 60 * 60 * 1000);
     const currTimeStamp = Math.floor(currDate.getTime() / 1000);
     const prevTimeStamp = Math.floor(prevDate.getTime() / 1000);
-    console.log(coin_id);
+
+    let isAPISubscribed = true;
+
     axios
       .get(
         `https://api.coingecko.com/api/v3/coins/${coin_id}?localization=false&tickers=true&market_data=true&community_data=true&developer_data=true&sparkline=false`
       )
-      .then((crypto_coin) => get_coin_details(crypto_coin.data))
+      .then((crypto_coin) => {
+        get_coin_details(crypto_coin.data);
+      })
       .catch((error) => {
         set_show_modal(true);
         set_error_message(error.message);
@@ -35,11 +39,18 @@ const Coin_Details = () => {
       .get(
         `https://api.coingecko.com/api/v3/coins/${coin_id}/market_chart/range?vs_currency=zar&from=${prevTimeStamp}&to=${currTimeStamp}`
       )
-      .then((charts_data) => get_chart_data(charts_data.data))
+      .then((charts_data) => {
+        if (isAPISubscribed) get_chart_data(charts_data.data);
+      })
       .catch((error) => {
         set_show_modal(true);
         set_error_message(error.message);
       });
+
+    return () => {
+      // cancel the subscription
+      isAPISubscribed = false;
+    };
   }, []);
 
   const set_active_tab_handler = (tab) => {
@@ -61,26 +72,26 @@ const Coin_Details = () => {
     </div>
   );
 
-  if (chart_data && coin_details) {
+  if (coin_details) {
     switch (active_tab) {
       case "price":
-        chartData = chart_data.prices;
+        chartData = chart_data?.prices;
         increasing = coin_details.market_data.price_change_percentage_24h > 0;
         break;
       case "market_cap":
-        chartData = chart_data.market_caps;
+        chartData = chart_data?.market_caps;
         increasing =
           coin_details.market_data.market_cap_change_percentage_24h > 0;
         break;
       case "total_volumes":
-        chartData = chart_data.total_volumes;
+        chartData = chart_data?.total_volumes;
         increasing =
           coin_details.market_data.market_cap_change_percentage_24h > 0;
 
         break;
 
       default:
-        chartData = chart_data.prices;
+        chartData = chart_data?.prices;
 
         break;
     }
@@ -114,48 +125,50 @@ const Coin_Details = () => {
               </div>
             </div>
           </div>
-          <div className={classes.chart_wrapper}>
-            <div className={classes.toggle_btns_wrapper}>
-              <div className={classes.toggle_btns_innerWrapper}>
-                <button
-                  className={
-                    active_tab == "price"
-                      ? [classes.btn, classes.active].join(" ")
-                      : classes.btn
-                  }
-                  onClick={() => set_active_tab_handler("price")}
-                >
-                  Price
-                </button>
-                <button
-                  className={
-                    active_tab == "market_cap"
-                      ? [classes.btn, classes.active].join(" ")
-                      : classes.btn
-                  }
-                  onClick={() => set_active_tab_handler("market_cap")}
-                >
-                  Market cap
-                </button>
-                <button
-                  className={
-                    active_tab == "total_volumes"
-                      ? [classes.btn, classes.active].join(" ")
-                      : classes.btn
-                  }
-                  onClick={() => set_active_tab_handler("total_volumes")}
-                >
-                  Total volume
-                </button>
+          {chart_data && (
+            <div className={classes.chart_wrapper}>
+              <div className={classes.toggle_btns_wrapper}>
+                <div className={classes.toggle_btns_innerWrapper}>
+                  <button
+                    className={
+                      active_tab == "price"
+                        ? [classes.btn, classes.active].join(" ")
+                        : classes.btn
+                    }
+                    onClick={() => set_active_tab_handler("price")}
+                  >
+                    Price
+                  </button>
+                  <button
+                    className={
+                      active_tab == "market_cap"
+                        ? [classes.btn, classes.active].join(" ")
+                        : classes.btn
+                    }
+                    onClick={() => set_active_tab_handler("market_cap")}
+                  >
+                    Market cap
+                  </button>
+                  <button
+                    className={
+                      active_tab == "total_volumes"
+                        ? [classes.btn, classes.active].join(" ")
+                        : classes.btn
+                    }
+                    onClick={() => set_active_tab_handler("total_volumes")}
+                  >
+                    Total volume
+                  </button>
+                </div>
               </div>
+              <Chart_component
+                chart_data={chartData || []}
+                increasing={increasing}
+                lineWidth={1.5}
+                chart_height={"400px"}
+              />
             </div>
-            <Chart_component
-              chart_data={chartData || []}
-              increasing={increasing}
-              lineWidth={1.5}
-              chart_height={"400px"}
-            />
-          </div>
+          )}
           <div className={classes.market_stats_wrapper}>
             <h2 className={classes.secondary_header}>
               Market stats and details

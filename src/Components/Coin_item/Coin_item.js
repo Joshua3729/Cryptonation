@@ -1,7 +1,4 @@
-import React, { useEffect, useState } from "react";
 import classes from "./Coin_item.module.css";
-import axios from "axios";
-import Chart_component from "../Chart/Chart";
 import { useNavigate } from "react-router-dom";
 
 const Coin_item = (props) => {

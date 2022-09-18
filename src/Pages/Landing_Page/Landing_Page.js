@@ -3,9 +3,9 @@ import Coin_item from "../../Components/Coin_item/Coin_item";
 import classes from "./Landing_Page.module.css";
 import axios from "axios";
 import Navigation from "../../Components/Navigation/Navigation";
-import Chart_component from "../../Components/Chart/Chart";
 import coin_bg from "../../Assets/coin.png";
 import LoadingSpinner from "../../Components/UI/LoadingSpinner/LoadingSpinner";
+import Modal from "../../Components/Modal/Modal";
 const Landing_Page = (props) => {
   const [coins, get_coins] = useState(null);
   const [show_modal, set_show_modal] = useState(false);
@@ -87,11 +87,14 @@ const Landing_Page = (props) => {
   return (
     <>
       <Navigation />
+      <Modal show={show_modal} clicked={close_modal_handler}>
+        <div className={classes.modal_inner_wrapper}>{error_message}</div>
+      </Modal>
       <div className={classes.Landing_Page}>
         <div className={classes.header_bar}>
           <div className={classes.inner_wrapper}>
             <h1 className={classes.primary_header}>
-              Today's cryptocurrency prices
+              Today's top 10 crypto coins by market cap
             </h1>
           </div>
           <div className={classes.bg_wrapper}>
