@@ -8,14 +8,25 @@ import coin_bg from "../../Assets/coin.png";
 import LoadingSpinner from "../../Components/UI/LoadingSpinner/LoadingSpinner";
 const Landing_Page = (props) => {
   const [coins, get_coins] = useState(null);
-  const [chart_data, get_chart_data] = useState(null);
+  const [show_modal, set_show_modal] = useState(false);
+  const [error_message, set_error_message] = useState(null);
 
   const url =
     "https://api.coingecko.com/api/v3/coins/markets?vs_currency=zar&order=market_cap_desc&per_page=10&page=1&sparkline=false";
 
   useEffect(() => {
-    axios.get(url).then((crypto_coins) => get_coins(crypto_coins.data));
+    axios
+      .get(url)
+      .then((crypto_coins) => get_coins(crypto_coins.data))
+      .catch((error) => {
+        set_show_modal(true);
+        set_error_message(error.message);
+      });
   }, []);
+
+  const close_modal_handler = () => {
+    set_show_modal(false);
+  };
 
   let dashboard = (
     <div className={classes.loading_wrapper}>
