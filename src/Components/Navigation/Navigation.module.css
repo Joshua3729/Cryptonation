@@ -11,7 +11,10 @@
 .logo {
   font-size: 15px;
   font-weight: 700;
+}
+.logo a {
   color: white;
+  text-decoration: none;
 }
 .nav_list {
   display: flex;
