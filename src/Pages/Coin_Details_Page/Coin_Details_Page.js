@@ -242,15 +242,6 @@ const Coin_Details = () => {
               </div>
             </div>
           </div>
-          <div className={classes.about_wrapper}>
-            <h2 className={classes.secondary_header}>
-              About {coin_details.name}
-            </h2>
-            <div
-              className={classes.about_text}
-              dangerouslySetInnerHTML={{ __html: coin_details.description.en }}
-            ></div>
-          </div>
         </div>
       </div>
     );
