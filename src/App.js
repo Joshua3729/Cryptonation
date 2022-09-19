@@ -6,7 +6,7 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<Landing_Page />} />
-      <Route path="coin" element={<Coin_Details />} />
+      <Route path="*" element={<Navigate to="/" replace />} />
       <Route path="coin/:coin_id" element={<Coin_Details />} />
     </Routes>
   );
